@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>My To Do List</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gradient-to-r from-blue-400 to-purple-500 min-h-screen">
+
+    <div class="text-center text-white pt-10">
+
+        <h1 class="text-4xl font-bold">
+            📝 My To-Do List
+        </h1>
+
+        <p class="mt-2">
+            Manage your daily tasks easily
+        </p>
+
+    </div>
+
+
+  
+
+    <div class="max-w-lg mx-auto bg-white mt-8 p-6 rounded-2xl shadow-2xl">
+
+        <h2 class="text-2xl font-bold text-gray-700 mb-5 text-center">
+            Daily Tasks
+        </h2>
+
+
+   
+
+        <div class="flex gap-2">
+
+            <input
+                type="text"
+                id="task"
+                placeholder="Enter your task..."
+                class="border-2 border-purple-300 p-3 rounded-lg w-full outline-none focus:border-purple-500"
+            >
+
+            <button
+                onclick="addTask()"
+                class="bg-purple-500 text-white px-5 rounded-lg hover:bg-purple-700"
+            >
+                Add
+            </button>
+
+        </div>
+
+
+      
+
+        <ul id="list" class="mt-6"></ul>
+
+    </div>
+
+
+
+    <script>
+
+        function addTask() {
+
+            var task = document.getElementById("task").value;
+
+            if (task == "") {
+
+                alert("Please enter a task");
+
+            }
+
+            else {
+
+                var li = document.createElement("li");
+
+                li.className =
+                    "bg-purple-50 border border-purple-200 p-3 mb-3 rounded-lg flex justify-between items-center";
+
+
+                li.innerHTML =
+                    "<span onclick='completeTask(this)' " +
+                    "class='cursor-pointer text-gray-700'>" +
+                    "📌 " + task +
+                    "</span>" +
+
+                    "<button onclick='deleteTask(this)' " +
+                    "class='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-700'>" +
+                    "Delete</button>";
+
+
+                document.getElementById("list").appendChild(li);
+
+                document.getElementById("task").value = "";
+
+            }
+
+        }
+
+
+        function deleteTask(button) {
+
+            button.parentElement.remove();
+
+        }
+
+
+        function completeTask(task) {
+
+            task.classList.toggle("line-through");
+
+            task.classList.toggle("text-gray-400");
+
+        }
+
+    </script>
+
+</body>
+</html>
